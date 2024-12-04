@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: back
+  labels:
+    app: back
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: back
+  template:
+    metadata:
+      labels:
+        app: back
+    spec:
+      containers:
+      - name: back
+        image: sukjubae/back:1
+        ports:
+        - containerPort: 80
+        env:
+        - name: DB_NAME
+          value: "db"
+        - name: DB_USER
+          value: "user"
+        - name: DB_PASSWORD
+          value: "1234"
+        - name: DB_HOST
+          value: "svc-db"
+        - name: DB_PORT
+          value: "3306"
